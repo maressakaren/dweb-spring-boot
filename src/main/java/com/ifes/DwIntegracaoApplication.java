@@ -1,4 +1,4 @@
-package com.ifes.dwIntegracao;
+package com.ifes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
