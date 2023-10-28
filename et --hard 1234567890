@@ -1,0 +1,64 @@
+[33mcommit 7b8a8c866301c124c7a3b9a264e6ccf5b0e8f44b[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: maressakaren <khsmaressa@gmail.com>
+Date:   Sat Oct 28 12:35:45 2023 -0300
+
+    update
+
+[33mcommit 8c66e33ab23fb95151b3c3b09fa3e0ad5749ba71[m
+Author: maressakaren <khsmaressa@gmail.com>
+Date:   Sat Oct 28 12:03:24 2023 -0300
+
+    refatoracao
+
+[33mcommit 3d1f020dc365f9aa412f6267fb9a9237bf73a8d8[m
+Author: Rafael <rafaelmachadosouza3@gmail.com>
+Date:   Fri Oct 27 20:55:28 2023 -0300
+
+    Implementado a classe TipoEpico.
+
+[33mcommit 67f878e147c452b6d3afa1234ef4b57a8bcb253d[m
+Merge: 7879cac fa0df45
+Author: Rafael <rafaelmachadosouza3@gmail.com>
+Date:   Fri Oct 27 20:53:38 2023 -0300
+
+    Merge remote-tracking branch 'origin/main'
+    
+    # Conflicts:
+    #       src/main/java/com/ifes/controller/HistoriaUsuarioController.java
+    #       src/main/java/com/ifes/controller/TarefaController.java
+
+[33mcommit 7879cac7c46af3c838246b299fefd88afd2582ef[m
+Author: Rafael <rafaelmachadosouza3@gmail.com>
+Date:   Fri Oct 27 20:47:55 2023 -0300
+
+    Implementado a classe TipoEpico.
+
+[33mcommit fa0df45e5c7ae8767f4511e6945213d8dea7fcaf[m
+Author: maressakaren <khsmaressa@gmail.com>
+Date:   Fri Oct 27 19:51:34 2023 -0300
+
+    criando application
+
+[33mcommit 4db23be48d1c64e6be180b535e908b4dccee00ba[m
+Author: Rafael-byte-tech <rafaelmachadosouza3@gmail.com>
+Date:   Fri Oct 27 09:09:07 2023 -0300
+
+    Adicionada dependencia springdoc.
+
+[33mcommit 8c278615d56f6909e5163ccfa474d9c8c5a84ff9[m
+Author: maressakaren <khsmaressa@gmail.com>
+Date:   Thu Oct 26 21:48:58 2023 -0300
+
+    criando classes
+
+[33mcommit 53fc11d40ffac12ac52e850f63e67edaf6e474bb[m
+Author: maressakaren <khsmaressa@gmail.com>
+Date:   Wed Oct 25 11:18:47 2023 -0300
+
+    update
+
+[33mcommit 45f5ac9ea2af34d99e2c405a0c1d697807e84f67[m
+Author: maressakaren <khsmaressa@gmail.com>
+Date:   Wed Oct 25 10:31:44 2023 -0300
+
+    initial
