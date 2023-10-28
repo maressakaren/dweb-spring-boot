@@ -1,12 +1,9 @@
 package com.ifes.dwIntegracao.application;
 
 import com.ifes.dwIntegracao.dto.ProjetoDTO;
-import com.ifes.dwIntegracao.dto.TipoEpicoDTO;
 import com.ifes.dwIntegracao.exception.NotFoundException;
 import com.ifes.dwIntegracao.model.Projeto;
-import com.ifes.dwIntegracao.model.TipoEpico;
 import com.ifes.dwIntegracao.repository.ProjetoRepository;
-import com.ifes.dwIntegracao.repository.TipoEpicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +26,12 @@ public class ProjetoApplication
         return projetoRepository.save(projeto);
     }
 
-    public Projeto retrieve(int id) throws NotFoundException
+    public List<Projeto> getAll(){
+
+        return projetoRepository.findAll();
+    }
+    
+    /*public Projeto getById(int id) throws NotFoundException
     {
         Projeto projeto;
         Optional<Projeto> entity;
@@ -40,19 +42,29 @@ public class ProjetoApplication
         else throw new NotFoundException();
 
         return projeto;
+    }*/
+
+    public Projeto getById(int id) throws NotFoundException{
+        Projeto projeto;
+        Optional<Projeto> obOptional = projetoRepository.findById(id);
+
+        if(obOptional!=null){
+            projeto = obOptional.get();
+            return projeto;
+        }
+        throw new NotFoundException();
     }
 
-    public void update(int id, TipoEpicoDTO tipoEpicoDTO)
+    public void update(int id, ProjetoDTO projetoDTO)
     {
-        TipoEpico tipoEpico;
+        Projeto projeto;
 
         try
         {
-            tipoEpico = retrieve(id);
-            tipoEpico.setNome(tipoEpicoDTO.getNome());
-            tipoEpico.setDescricao(tipoEpicoDTO.getDescricao());
+            projeto = getById(id);
+            projeto.setNome(projetoDTO.getNome());
 
-            repository.save(tipoEpico);
+            projetoRepository.save(projeto);
         }
         catch (NotFoundException e)
         {
