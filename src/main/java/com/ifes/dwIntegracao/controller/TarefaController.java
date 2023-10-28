@@ -1,4 +1,4 @@
-package com.ifes.controller;
+package com.ifes.dwIntegracao.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
