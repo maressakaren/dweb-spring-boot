@@ -15,7 +15,6 @@ public class TipoHistoriaUsuario {
     @Column(name = "descricao")
     private String descricao;
     
-    /*@ManyToOne
-    @JoinColumn(name = "fk_tipo_epico_tipo_historia_de_usuario")
-    private TipoEpico tipoEpico;*/
+    @Column(name = "fk_tipo_epico_tipo_historia_de_usuario")
+    private int tipoEpico;
 }

@@ -20,10 +20,10 @@ public class TipoHistoriaUsuarioController{
     @Autowired
     TipoHistoriaUsuarioApplication tipoHUApplication;
 
-   @PostMapping("Cadastrar/")
-    public TipoHistoriaUsuario create(@RequestBody TipoHistoriaUsuarioDTO tipoHUdto)
+   @PostMapping("Cadastrar/{id}")
+    public TipoHistoriaUsuario create(@RequestBody TipoHistoriaUsuarioDTO tipoHUdto, @PathVariable int id)
     {
-        return tipoHUApplication.create(tipoHUdto);
+        return tipoHUApplication.create(tipoHUdto, id);
     }
 
     @GetMapping("Pesquisar/{id}")
