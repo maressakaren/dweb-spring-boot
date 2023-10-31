@@ -8,4 +8,7 @@ public class NotFoundException extends Exception
         message = "Objeto não achado.";
         return message;
     }
+    public String ProjetoNotFoundException(){
+        return "Projeto não Encontrado.";
+    }
 }

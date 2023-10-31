@@ -31,18 +31,6 @@ public class ProjetoApplication
         return projetoRepository.findAll();
     }
     
-    /*public Projeto getById(int id) throws NotFoundException
-    {
-        Projeto projeto;
-        Optional<Projeto> entity;
-
-        entity = projetoRepository.findById(id);
-
-        if (entity.isPresent()) projeto = entity.get();
-        else throw new NotFoundException();
-
-        return projeto;
-    }*/
 
     public Projeto getById(int id) throws NotFoundException{
         Projeto projeto;
@@ -58,22 +46,17 @@ public class ProjetoApplication
     public void update(int id, ProjetoDTO projetoDTO)
     {
         Projeto projeto;
-
-        try
-        {
+        try{
             projeto = getById(id);
             projeto.setNome(projetoDTO.getNome());
 
             projetoRepository.save(projeto);
         }
-        catch (NotFoundException e)
-        {
-            e.getMessage();
+        catch (NotFoundException e){e.ProjetoNotFoundException();
         }
     }
 
-    public void delete(int id)
-    {
+    public void delete(int id){
         projetoRepository.deleteById(id);
     }
 }

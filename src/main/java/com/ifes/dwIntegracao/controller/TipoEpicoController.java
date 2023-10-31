@@ -4,7 +4,6 @@ import com.ifes.dwIntegracao.application.TipoEpicoApplication;
 import com.ifes.dwIntegracao.dto.TipoEpicoDTO;
 import com.ifes.dwIntegracao.exception.NotFoundException;
 import com.ifes.dwIntegracao.model.TipoEpico;
-import com.ifes.dwIntegracao.repository.TipoEpicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
