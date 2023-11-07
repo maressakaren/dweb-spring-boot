@@ -4,5 +4,7 @@ import lombok.Data;
 @Data
 public class TipoHistoriaUsuarioDTO {
 
-    private String descricao;    
+    private String descricao;  
+    
+    private int idEpico;
 }

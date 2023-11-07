@@ -20,13 +20,12 @@ public class TipoHistoriaUsuarioApplication {
     @Autowired
     TipoEpicoRepository tErepository;
 
-    public TipoHistoriaUsuario create(TipoHistoriaUsuarioDTO tipoHUdto, int id){
+    public TipoHistoriaUsuario create(TipoHistoriaUsuarioDTO tipoHUdto){
 
         TipoHistoriaUsuario tipoHU = new TipoHistoriaUsuario();
-        //TipoEpico tipoEpico = (tErepository.findById(id)).get();
 
         tipoHU.setDescricao(tipoHUdto.getDescricao());
-        tipoHU.setTipoEpico(id);
+        tipoHU.setTipoEpico(tipoHUdto.getIdEpico());
         return tipoHURepository.save(tipoHU);
     }
 

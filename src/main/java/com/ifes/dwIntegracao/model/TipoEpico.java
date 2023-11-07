@@ -13,8 +13,8 @@ public class TipoEpico
     @Column(name = "id")
     private int id;
 
-    @Column(name = "nome")
-    private String nome;
+    /*@Column(name = "nome")
+    private String nome;*/
 
     @Column(name = "descricao")
     private String descricao;

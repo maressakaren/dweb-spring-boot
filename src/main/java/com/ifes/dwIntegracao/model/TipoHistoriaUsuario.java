@@ -1,5 +1,7 @@
 package com.ifes.dwIntegracao.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,4 +20,9 @@ public class TipoHistoriaUsuario
     
     @Column(name = "fk_tipo_epico_tipo_historia_de_usuario")
     private int tipoEpico;
+
+    @ElementCollection
+    @Embedded
+    private List<DependenciasTipoHU> dependencias;
+
 }
