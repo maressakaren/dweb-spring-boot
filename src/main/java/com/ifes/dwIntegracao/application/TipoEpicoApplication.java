@@ -6,11 +6,13 @@ import com.ifes.dwIntegracao.model.TipoEpico;
 import com.ifes.dwIntegracao.repository.TipoEpicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Component
+@Service
 public class TipoEpicoApplication
 {
     @Autowired
@@ -35,7 +37,7 @@ public class TipoEpicoApplication
         entity = repository.findById(id);
 
         if (entity.isPresent()) tipoEpico = entity.get();
-        else throw new NotFoundException();
+        else throw new NotFoundException("Tipo Épico não encontrado.");
 
         return tipoEpico;
     }

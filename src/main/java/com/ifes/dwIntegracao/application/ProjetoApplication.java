@@ -6,11 +6,13 @@ import com.ifes.dwIntegracao.model.Projeto;
 import com.ifes.dwIntegracao.repository.ProjetoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Component
+@Service
 public class ProjetoApplication
 {
     @Autowired
@@ -36,11 +38,11 @@ public class ProjetoApplication
         Projeto projeto;
         Optional<Projeto> obOptional = projetoRepository.findById(id);
 
-        if(obOptional!=null){
+        if(obOptional.isPresent()){
             projeto = obOptional.get();
             return projeto;
         }
-        throw new NotFoundException();
+        throw new NotFoundException("Projeto não encontrado.");
     }
 
     public void update(int id, ProjetoDTO projetoDTO)
@@ -52,7 +54,9 @@ public class ProjetoApplication
 
             projetoRepository.save(projeto);
         }
-        catch (NotFoundException e){e.ProjetoNotFoundException();
+        catch (NotFoundException e)
+        {
+            e.getMessage();
         }
     }
 

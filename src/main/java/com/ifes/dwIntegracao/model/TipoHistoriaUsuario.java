@@ -6,7 +6,8 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "tipo_historia_de_usuario")
-public class TipoHistoriaUsuario {
+public class TipoHistoriaUsuario
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

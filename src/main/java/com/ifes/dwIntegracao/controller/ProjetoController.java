@@ -26,13 +26,13 @@ public class ProjetoController{
     @Autowired
     ProjetoApplication projetoApplication;
 
-   @PostMapping("Cadastrar/")
+   @PostMapping("Cadastrar")
     public Projeto create(@RequestBody ProjetoDTO projetoDto)
     {
         return projetoApplication.create(projetoDto);
     }
 
-    @GetMapping("Pesquisar/{id}")
+    @GetMapping("{id}")
     public Projeto get(@PathVariable int id)
     {
        

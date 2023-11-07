@@ -40,7 +40,7 @@ public class TipoHistoriaUsuarioApplication {
             return tipoHU;
         }
 
-        throw new NotFoundException();
+        throw new NotFoundException("Tipo de História de Usuário não encontrado.");
     }
     
     public List<TipoHistoriaUsuario> getAll(){

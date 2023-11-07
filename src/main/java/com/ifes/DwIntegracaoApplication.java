@@ -9,10 +9,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories
 @OpenAPIDefinition(info = @Info(title = "Trabalho de DW", version = "1.0", description = "Trabalho de desenvolvimento web."))
-public class DwIntegracaoApplication {
-
-	public static void main(String[] args) {
+public class DwIntegracaoApplication
+{
+	public static void main(String[] args)
+	{
 		SpringApplication.run(DwIntegracaoApplication.class, args);
 	}
-
 }
