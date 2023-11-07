@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class TipoEpicoDTO
 {
-    private String nome;
+    //private String nome;
     private String descricao;
 }

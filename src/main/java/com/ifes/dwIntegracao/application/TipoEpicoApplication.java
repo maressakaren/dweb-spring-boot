@@ -21,7 +21,7 @@ public class TipoEpicoApplication
         TipoEpico tipoEpico;
 
         tipoEpico = new TipoEpico();
-        tipoEpico.setNome(tipoEpicoDTO.getNome());
+        //tipoEpico.setNome(tipoEpicoDTO.getNome());
         tipoEpico.setDescricao(tipoEpicoDTO.getDescricao());
 
         return repository.save(tipoEpico);
@@ -52,7 +52,7 @@ public class TipoEpicoApplication
         try
         {
             tipoEpico = retrieve(id);
-            tipoEpico.setNome(tipoEpicoDTO.getNome());
+            //tipoEpico.setNome(tipoEpicoDTO.getNome());
             tipoEpico.setDescricao(tipoEpicoDTO.getDescricao());
 
             repository.save(tipoEpico);

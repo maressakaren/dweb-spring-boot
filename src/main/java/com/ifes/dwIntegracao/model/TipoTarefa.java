@@ -1,6 +1,8 @@
 package com.ifes.dwIntegracao.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,10 +23,12 @@ public class TipoTarefa {
     @Column(name = "descricao")
     private String descricao;
 
-    @Column(name = "fk_tipo_historia_de_usuario_tipo_tarefa")
-    private int idTipoHistUsuario;
-
-    private List<Integer> idsTarefas;
+    @Column(name = "fk_tipo_historia_usuario_id")
+    private int fk_histor_usuario;
+    
+    @ElementCollection
+    @Embedded
+    private List<TarefaId> idsTarefas;
 
         
 }
