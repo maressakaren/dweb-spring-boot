@@ -36,7 +36,7 @@ public class TipoTarefaApplication {
             tipotarefa = opitional.get();
             return tipotarefa;
         }
-        throw new NotFoundException();
+        throw new NotFoundException(null);
     }
     
     public List<TipoTarefa> getAll(){
