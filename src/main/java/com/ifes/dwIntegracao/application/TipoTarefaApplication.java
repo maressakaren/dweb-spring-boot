@@ -32,11 +32,11 @@ public class TipoTarefaApplication {
         Optional<TipoTarefa> opitional;
 
         opitional = repository.findById(id);
-        if(opitional!=null){
+        if(opitional.isPresent()){
             tipotarefa = opitional.get();
             return tipotarefa;
         }
-        throw new NotFoundException();
+        else throw new NotFoundException("Tipo tarefa não achado");
     }
     
     public List<TipoTarefa> getAll(){
