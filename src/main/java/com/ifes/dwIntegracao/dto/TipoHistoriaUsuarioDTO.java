@@ -1,5 +1,9 @@
 package com.ifes.dwIntegracao.dto;
 
+import java.util.List;
+
+import com.ifes.dwIntegracao.model.DependenciasTipoHU;
+
 import lombok.Data;
 @Data
 public class TipoHistoriaUsuarioDTO {
@@ -7,4 +11,6 @@ public class TipoHistoriaUsuarioDTO {
     private String descricao;  
     
     private int idEpico;
+
+    private List<DependenciasTipoHU> dependencias;
 }

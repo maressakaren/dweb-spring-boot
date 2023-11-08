@@ -17,18 +17,68 @@ public class EpicoApplication
 {
     @Autowired
     private EpicoRepository repository;
-   
+    @Autowired
+    private CategoriaApplication categoriaApplication;
+    @Autowired
+    private ProjetoApplication projetoApplication;
+    @Autowired
+    private TipoEpicoApplication tipoEpicoApplication;
 
-    public Epico create(EpicoDTO epicoDTO){
+    public Epico create(EpicoDTO epicoDTO)
+    {
         Epico epico;
 
         epico = new Epico();
 
-        epico.setTitulo(epicoDTO.getNome());
-
+        epico.setTitulo(epicoDTO.getTitulo());
+        epico.setDescricao(epicoDTO.getDescricao());
+        epico.setRelevancia(epicoDTO.getRelevancia());
+        epico.setCategoria((epicoDTO.getCategoria()));
+        epico.setProjeto((epicoDTO.getProjeto()));
+        epico.setTipoEpico(epicoDTO.getTipoEpico());
+        epico.setDependencias(epicoDTO.getDependencias());
         return repository.save(epico);
-        
     }
- 
+
+    public Epico retrieve(int id) throws NotFoundException
+    {
+        Optional<Epico> entity;
+
+        entity = repository.findById(id);
+
+        if (entity.isPresent()) return entity.get();
+        else throw new NotFoundException("Épico não encontrado");
+    }
+
+    public List<Epico> retrieveAll()
+    {
+        return repository.findAll();
+    }
+
+    public Epico update(int id, EpicoDTO epicoDTO)
+    {
+        Epico epico;
+
+        try
+        {
+            epico = retrieve(id);
+            epico.setTitulo(epicoDTO.getTitulo());
+            epico.setDescricao(epicoDTO.getDescricao());
+            epico.setRelevancia(epicoDTO.getRelevancia());
+            epico.setDependencias(epicoDTO.getDependencias());
+
+            return repository.save(epico);
+        }
+        catch (NotFoundException e)
+        {
+            e.getMessage();
+        }
+
+        return null;
+    }
+
+    public void delete(int id)
+    {
+        repository.deleteById(id);
+    }
 }
- 

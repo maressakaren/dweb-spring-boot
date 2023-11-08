@@ -1,5 +1,7 @@
 package com.ifes.dwIntegracao.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,7 +17,7 @@ public class Epico
 
    @Column(name = "titulo")
    private String titulo;
-   /*
+   
    @Column(name = "descricao")
    private String descricao;
 
@@ -34,5 +36,9 @@ public class Epico
    @ManyToOne
    @JoinColumn(name = "fk_tipo_epico_id")
    private TipoEpico tipoEpico;
-   */
+
+   @ElementCollection
+   @Embedded
+   private List<DependenciaEpico> dependencias;
+   
 }

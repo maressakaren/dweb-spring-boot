@@ -26,6 +26,7 @@ public class TipoHistoriaUsuarioApplication {
 
         tipoHU.setDescricao(tipoHUdto.getDescricao());
         tipoHU.setTipoEpico(tipoHUdto.getIdEpico());
+        tipoHU.setDependencias(tipoHUdto.getDependencias());
         return tipoHURepository.save(tipoHU);
     }
 
