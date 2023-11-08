@@ -15,11 +15,12 @@ public class TipoHistoriaUsuario
     @Column(name = "id")
     private int id;
 
-    @Column(name = "descricao")
+    @Column
     private String descricao;
     
-    @Column(name = "fk_tipo_epico_tipo_historia_de_usuario")
-    private int tipoEpico;
+    @ManyToOne
+    @JoinColumn(name = "tipo_epico" )
+    private TipoEpico tipoEpico;
 
     @ElementCollection
     @Embedded

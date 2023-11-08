@@ -29,15 +29,19 @@ public class EpicoApplication
         Epico epico;
 
         epico = new Epico();
-
-        epico.setTitulo(epicoDTO.getTitulo());
-        epico.setDescricao(epicoDTO.getDescricao());
-        epico.setRelevancia(epicoDTO.getRelevancia());
-        epico.setCategoria((epicoDTO.getCategoria()));
-        epico.setProjeto((epicoDTO.getProjeto()));
-        epico.setTipoEpico(epicoDTO.getTipoEpico());
-        epico.setDependencias(epicoDTO.getDependencias());
-        return repository.save(epico);
+        try {
+            epico.setTitulo(epicoDTO.getTitulo());
+            epico.setDescricao(epicoDTO.getDescricao());
+            epico.setRelevancia(epicoDTO.getRelevancia());
+            epico.setCategoria(categoriaApplication.retrieve(epicoDTO.getCategoria()));
+            epico.setProjeto(projetoApplication.getById(epicoDTO.getProjeto_id()));
+            epico.setTipoEpico(tipoEpicoApplication.retrieve(epicoDTO.getTipoEpico_id()));
+            epico.setDependencias(epicoDTO.getDependencias());
+            return repository.save(epico);
+        } catch (NotFoundException e) {
+            e.getMessage();
+        }
+        return null;
     }
 
     public Epico retrieve(int id) throws NotFoundException

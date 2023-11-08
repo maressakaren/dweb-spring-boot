@@ -26,7 +26,7 @@ public class HistoriaUsuarioController {
 
     @PostMapping("Gerar/")
     public List<HistoriaUsuario> gerar(){
-        return application.gera();
+        return null;
     }
     
     @GetMapping("Pesquisar/{id}")

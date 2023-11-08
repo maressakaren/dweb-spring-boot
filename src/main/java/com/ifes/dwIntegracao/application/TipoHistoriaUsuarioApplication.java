@@ -19,15 +19,21 @@ public class TipoHistoriaUsuarioApplication {
     TipoHistoriaUsuarioRepository tipoHURepository;
     @Autowired
     TipoEpicoRepository tErepository;
+    TipoEpicoApplication appTipoEpico;
 
     public TipoHistoriaUsuario create(TipoHistoriaUsuarioDTO tipoHUdto){
 
         TipoHistoriaUsuario tipoHU = new TipoHistoriaUsuario();
 
-        tipoHU.setDescricao(tipoHUdto.getDescricao());
-        tipoHU.setTipoEpico(tipoHUdto.getIdEpico());
-        tipoHU.setDependencias(tipoHUdto.getDependencias());
+        try {
+            tipoHU.setDescricao(tipoHUdto.getDescricao());
+            tipoHU.setTipoEpico(appTipoEpico.retrieve(tipoHUdto.getIdEpico()));
+            tipoHU.setDependencias(tipoHUdto.getDependencias());
         return tipoHURepository.save(tipoHU);
+        } catch (NotFoundException e) {
+            e.getMessage();
+        }
+        return null;
     }
 
     public TipoHistoriaUsuario getById(int id) throws NotFoundException{

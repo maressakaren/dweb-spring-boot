@@ -12,29 +12,29 @@ public class Epico
 {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "id")
+   @Column
    private int id;
 
-   @Column(name = "titulo")
+   @Column
    private String titulo;
    
-   @Column(name = "descricao")
+   @Column
    private String descricao;
 
-   @Column(name = "relevancia")
+   @Column
    @Enumerated(EnumType.STRING)
    private Relevancia relevancia;
 
    @OneToOne
-   @JoinColumn(name = "fk_categoria_id")
+   @JoinColumn(name = "id_categoria" )
    private Categoria categoria;
 
    @ManyToOne
-   @JoinColumn(name = "fk_projeto_id")
+   @JoinColumn(name = "id_projeto")
    private Projeto projeto;
 
    @ManyToOne
-   @JoinColumn(name = "fk_tipo_epico_id")
+   @JoinColumn(name = "id_tipoEpico")
    private TipoEpico tipoEpico;
 
    @ElementCollection
