@@ -31,9 +31,12 @@ public class HistoriaUsuario {
 
     @Column(name = "categoria")
     private String categoria;
+
     
     @Column(name = "fk_epico")
     private int fk_epico;
     
+    @Column(name = "fk_tarefas")
+
     private List<Integer> dependencias; //Arrumar isso depois 
 }

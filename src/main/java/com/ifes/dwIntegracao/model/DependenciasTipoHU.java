@@ -15,5 +15,4 @@ public class DependenciasTipoHU {
         this.id = id;
     }
      
-    
 }

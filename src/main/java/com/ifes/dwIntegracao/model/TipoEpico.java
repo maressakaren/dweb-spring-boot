@@ -1,5 +1,7 @@
 package com.ifes.dwIntegracao.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,6 +17,8 @@ public class TipoEpico
 
     /*@Column(name = "nome")
     private String nome;*/
+
+    private List<Integer> tiposHU; //ISSO AQUI PRECISA SER UM COLLECTION
 
     @Column(name = "descricao")
     private String descricao;

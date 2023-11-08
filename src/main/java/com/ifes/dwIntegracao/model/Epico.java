@@ -15,7 +15,7 @@ public class Epico
 
    @Column(name = "titulo")
    private String titulo;
-
+   /*
    @Column(name = "descricao")
    private String descricao;
 
@@ -34,4 +34,5 @@ public class Epico
    @ManyToOne
    @JoinColumn(name = "fk_tipo_epico_id")
    private TipoEpico tipoEpico;
+   */
 }
