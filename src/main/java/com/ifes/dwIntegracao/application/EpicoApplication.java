@@ -2,12 +2,12 @@ package com.ifes.dwIntegracao.application;
 
 import com.ifes.dwIntegracao.dto.EpicoDTO;
 import com.ifes.dwIntegracao.exception.NotFoundException;
+import com.ifes.dwIntegracao.model.DependenciasTipoHU;
 import com.ifes.dwIntegracao.model.Epico;
 import com.ifes.dwIntegracao.repository.EpicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +37,17 @@ public class EpicoApplication
             epico.setCategoria(categoriaApplication.retrieve(epicoDTO.getCategoria()));
             epico.setProjeto(projetoApplication.getById(epicoDTO.getProjeto_id()));
             epico.setTipoEpico(tipoEpicoApplication.retrieve(epicoDTO.getTipoEpico_id()));
-            epico.setDependencias(epicoDTO.getDependencias());
+            if (epicoDTO.getDependencias() != null) {
+                List<Epico> dependencias = new ArrayList<>();
+                for (Integer dependenciaId : epicoDTO.getDependencias()) {
+                    Epico dependencia = this.retrieve(dependenciaId);
+                    if (dependencia != null) {
+                        dependencias.add(dependencia);
+                    }
+                }
+                epico.setDependencias(dependencias);
+            }
+
             return repository.save(epico);
         } catch (NotFoundException e) {
             e.getMessage();
@@ -70,23 +80,18 @@ public class EpicoApplication
             epico.setTitulo(epicoDTO.getTitulo());
             epico.setDescricao(epicoDTO.getDescricao());
             epico.setRelevancia(epicoDTO.getRelevancia());
-            epico.setDependencias(epicoDTO.getDependencias());
-            
-            //fica aq o loop que pega o
-            if (epicoDTO.getDependencias() != null) { // pega as dependencias daquele epico
+           // epico.setDependencias(epicoDTO.getDependencias());
+            if (epicoDTO.getDependencias() != null) {
                 List<Epico> dependencias = new ArrayList<>();
-                for (Integer dependenciaId : epicoDTO.getDependencias()) { // para cada dependencia no epico
-                    Epico dependencia = this.retrieve(dependenciaId); // get by id - Recebe a dependencia do epico que esta no for
+                for (Integer dependenciaId : epicoDTO.getDependencias()) {
+                    Epico dependencia = this.retrieve(dependenciaId);
                     if (dependencia != null) {
-                        dependencias.add(dependencia); // só adiciona
+                        dependencias.add(dependencia);
                     }
                 }
                 epico.setDependencias(dependencias);
             }
 
-            return repository.save(epico);
-        
-            
             return repository.save(epico);
         }
         catch (NotFoundException e)

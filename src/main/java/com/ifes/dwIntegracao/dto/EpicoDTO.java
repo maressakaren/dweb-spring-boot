@@ -2,6 +2,7 @@ package com.ifes.dwIntegracao.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ifes.dwIntegracao.model.Categoria;
 import com.ifes.dwIntegracao.model.DependenciasEpico;
 import com.ifes.dwIntegracao.model.DependenciasTipoHU;
@@ -19,6 +20,7 @@ public class EpicoDTO
 
    private String descricao;
 
+   @JsonFormat(shape = JsonFormat.Shape.OBJECT)
    private Relevancia relevancia;
 
    private int categoria;
@@ -27,6 +29,6 @@ public class EpicoDTO
 
    private int tipoEpico_id;
 
-   private List<int> dependencias;
+   private List<Integer> dependencias;
 
 }
