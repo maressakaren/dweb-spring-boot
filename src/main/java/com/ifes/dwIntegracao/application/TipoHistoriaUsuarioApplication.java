@@ -38,6 +38,7 @@ public class TipoHistoriaUsuarioApplication {
                 }
                 tipoHU.setDependencias(dependencias);//
             }
+            tipoHURepository.save(tipoHU);
         
         } catch (NotFoundException e) {
             e.getMessage();
@@ -50,7 +51,7 @@ public class TipoHistoriaUsuarioApplication {
         Optional<TipoHistoriaUsuario> opTipoHU;
         
         opTipoHU = tipoHURepository.findById(id);
-        if(opTipoHU!=null){ 
+        if(opTipoHU.isPresent()){ 
             tipoHU = opTipoHU.get();
             return tipoHU;
         }

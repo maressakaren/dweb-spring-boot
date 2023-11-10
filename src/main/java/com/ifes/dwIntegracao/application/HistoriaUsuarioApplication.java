@@ -13,7 +13,6 @@ import com.ifes.dwIntegracao.exception.NotFoundException;
 import com.ifes.dwIntegracao.model.Epico;
 import com.ifes.dwIntegracao.model.HistoriaUsuario;
 import com.ifes.dwIntegracao.model.TipoHistoriaUsuario;
-import com.ifes.dwIntegracao.repository.EpicoRepository;
 import com.ifes.dwIntegracao.repository.HistoriaUsuarioRepository;
 
 @Component
@@ -23,11 +22,9 @@ public class HistoriaUsuarioApplication {
     @Autowired
     private HistoriaUsuarioRepository repository;
     @Autowired
-    private EpicoRepository epicoRepository;
-    @Autowired
     private EpicoApplication epicoApplication;
-
-    private List<HistoriaUsuario> listHU = new ArrayList<>();
+    @Autowired
+    private TipoHistoriaUsuarioApplication tipoHApplicatio;
 
 
     public List<HistoriaUsuario> gera(int id) {
@@ -81,12 +78,21 @@ public class HistoriaUsuarioApplication {
             hUser.setRelevancia(dto.getRelevancia());
             hUser.setCategoria(dto.getCategoria());
             hUser.setDescricao(dto.getDescricao());
-            hUser.setDependencias(dto.getDependencias());
             hUser.setEpico(dto.getEpico());
-            hUser.setDependencias(dto.getDependencias());
-            
+            if(dto.getDependencias()!=null){
+                List<TipoHistoriaUsuario> dependencias = new ArrayList<>();
+                
+                for(Integer tipoHU_id: dto.getDependencias()){
+                    TipoHistoriaUsuario historia = tipoHApplicatio.getById(tipoHU_id);
+                    if(historia != null){
+                        dependencias.add(historia);
+                    }
 
-
+                }
+                hUser.setDependencias(dependencias);
+            }
+            this.repository.save(hUser);
+           
         } catch (NotFoundException e) {
             e.getMessage();
           

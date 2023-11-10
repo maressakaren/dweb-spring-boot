@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import com.ifes.dwIntegracao.dto.TipoTarefaDTO;
 import com.ifes.dwIntegracao.exception.NotFoundException;
-import com.ifes.dwIntegracao.model.TipoHistoriaUsuario;
 import com.ifes.dwIntegracao.model.TipoTarefa;
 import com.ifes.dwIntegracao.repository.TipoTarefaRepository;
 
@@ -21,21 +20,28 @@ public class TipoTarefaApplication {
     public TipoTarefa create(TipoTarefaDTO tipoTarefaDTO){
         
         TipoTarefa tipotarefa = new TipoTarefa(); 
-        List<Tarefa> Tipo;
 
-        tipotarefa.setDescricao(tipoTarefaDTO.getDescricao());
-        tipotarefa.setFk_histor_usuario(tipoTarefaDTO.getFk_histor_usuario());
-        if (tipoTarefaDTO.getDepenciasId() != null) {
+        try {
+            tipotarefa.setDescricao(tipoTarefaDTO.getDescricao());
+            tipotarefa.setFk_histor_usuario(tipoTarefaDTO.getFk_histor_usuario());
+            if (tipoTarefaDTO.getDepenciasId() != null) {
                 List<TipoTarefa> dependencias = new ArrayList<>();
                 for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 
                     TipoTarefa dependencia = this.getById(dependenciaId); 
                     if (dependencia != null) {
-                        dependencias.add(dependencia); 
+                        dependencias.add(dependencia);
                     }
+            
                 }
-                tipotarefa.(dependencias);
+                tipotarefa.setIdsTarefas(dependencias);
             }
-        return repository.save(tipotarefa);
+            this.repository.save(tipotarefa);
+        } catch (NotFoundException e) {
+            e.getMessage();
+        }
+
+        return null;
+    
     }
 
     public TipoTarefa getById(int id) throws NotFoundException{
@@ -60,8 +66,19 @@ public class TipoTarefaApplication {
             tipoTarefa = this.getById(id);
             tipoTarefa.setDescricao(tipoTarefaDTO.getDescricao());
             tipoTarefa.setFk_histor_usuario(tipoTarefaDTO.getFk_histor_usuario());
-            tipoTarefa.setIdsTarefas(tipoTarefaDTO.getDepenciasId());
-            repository.save(tipoTarefa);
+            if (tipoTarefaDTO.getDepenciasId() != null) {
+                List<TipoTarefa> dependencias = new ArrayList<>();
+                for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 
+                    TipoTarefa dependencia = this.getById(dependenciaId); 
+                    if (dependencia != null) {
+                        dependencias.add(dependencia);
+                    }
+            
+                }
+                tipoTarefa.setIdsTarefas(dependencias);
+            }
+            this.repository.save(tipoTarefa);
+           
         } catch (NotFoundException e) {
             e.getMessage();
         }
