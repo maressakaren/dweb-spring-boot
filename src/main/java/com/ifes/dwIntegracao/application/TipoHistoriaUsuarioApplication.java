@@ -61,7 +61,10 @@ public class TipoHistoriaUsuarioApplication {
             tipoHU = getById(id);
             tipoHU.setDescricao(tipoHUdto.getDescricao());
             
-            //vai ficar aqui
+
+            
+
+                        //vai ficar aqui
             if (tipoHU.getDependencias() != null) {
                 List<TipoHistoriaUsuario> dependencias = new ArrayList<>();
                 for (Integer dependenciaId : tipoHUdto.getDependencias()) { // para cada dependencia no epico
@@ -70,10 +73,10 @@ public class TipoHistoriaUsuarioApplication {
                         dependencias.add(dependencia); // só adiciona
                     }
                 }
-                tipoHU.setDependencias(dependencias);
+                tipoHU.setDependencias(dependencias);//
             }
             
-            tipoHURepository.save(tipoHU);          
+            tipoHURepository.save(tipoHU); 
 
         }catch (NotFoundException e)
         {
