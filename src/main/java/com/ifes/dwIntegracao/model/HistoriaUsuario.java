@@ -2,12 +2,9 @@ package com.ifes.dwIntegracao.model;
 
 import java.util.List;
 
-import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

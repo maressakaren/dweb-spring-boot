@@ -2,7 +2,6 @@ package com.ifes.dwIntegracao.application;
 
 import com.ifes.dwIntegracao.dto.EpicoDTO;
 import com.ifes.dwIntegracao.exception.NotFoundException;
-import com.ifes.dwIntegracao.model.DependenciasTipoHU;
 import com.ifes.dwIntegracao.model.Epico;
 import com.ifes.dwIntegracao.repository.EpicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +27,14 @@ public class EpicoApplication
 
     public Epico create(EpicoDTO epicoDTO)
     {
-        Epico epico;
-
-        epico = new Epico();
-        try {
-            epico.setTitulo(epicoDTO.getTitulo());
-            epico.setDescricao(epicoDTO.getDescricao());
-            epico.setRelevancia(epicoDTO.getRelevancia());
+        Epico epico = new Epico();
+        
+        epico.setTitulo(epicoDTO.getTitulo());
+        epico.setDescricao(epicoDTO.getDescricao());
+        epico.setRelevancia(epicoDTO.getRelevancia());
+        System.out.println(epicoDTO);
+        
+        try{
             epico.setCategoria(categoriaApplication.retrieve(epicoDTO.getCategoria()));
             epico.setProjeto(projetoApplication.getById(epicoDTO.getProjeto_id()));
             epico.setTipoEpico(tipoEpicoApplication.retrieve(epicoDTO.getTipoEpico_id()));
@@ -48,12 +48,12 @@ public class EpicoApplication
                 }
                 epico.setDependencias(dependencias);
             }
-
             return repository.save(epico);
+
         } catch (NotFoundException e) {
             e.getMessage();
+            return null;
         }
-        return null;
     }
 
     public Epico retrieve(int id) throws NotFoundException
