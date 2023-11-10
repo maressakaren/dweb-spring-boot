@@ -1,5 +1,6 @@
 package com.ifes.dwIntegracao.application;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,10 +21,20 @@ public class TipoTarefaApplication {
     public TipoTarefa create(TipoTarefaDTO tipoTarefaDTO){
         
         TipoTarefa tipotarefa = new TipoTarefa(); 
+        List<Tarefa> Tipo
 
         tipotarefa.setDescricao(tipoTarefaDTO.getDescricao());
-        tipotarefa.setIdsTarefas(tipoTarefaDTO.getDepenciasId());
-        tipotarefa.setFk_histor_usuario(tipoTarefaDTO.getFk_histor_usuario());;
+        tipotarefa.setFk_histor_usuario(tipoTarefaDTO.getFk_histor_usuario());
+        if (tipoTarefaDTO.getDepenciasId() != null) {
+                List<TipoTarefa> dependencias = new ArrayList<>();
+                for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { // para cada dependencia no epico
+                    TipoTarefa dependencia = this.getById(dependenciaId); // get by id - Recebe a dependencia do epico que esta no for
+                    if (dependencia != null) {
+                        dependencias.add(dependencia); // só adiciona
+                    }
+                }
+                tipotarefa.(dependencias);//
+            }
         return repository.save(tipotarefa);
     }
 
