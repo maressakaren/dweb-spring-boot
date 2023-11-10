@@ -13,5 +13,5 @@ public class TipoHistoriaUsuarioDTO {
     
     private int idEpico;
 
-    private List<TipoHistoriaUsuario> dependencias;
+    private List<Integer> dependencias;
 }
