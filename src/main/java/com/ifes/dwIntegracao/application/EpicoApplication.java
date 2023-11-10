@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -70,7 +71,22 @@ public class EpicoApplication
             epico.setDescricao(epicoDTO.getDescricao());
             epico.setRelevancia(epicoDTO.getRelevancia());
             epico.setDependencias(epicoDTO.getDependencias());
+            
+            //fica aq o loop que pega o
+            if (epicoDTO.getDependencias() != null) { // pega as dependencias daquele epico
+                List<Epico> dependencias = new ArrayList<>();
+                for (Integer dependenciaId : epicoDTO.getDependencias()) { // para cada dependencia no epico
+                    Epico dependencia = this.retrieve(dependenciaId); // get by id - Recebe a dependencia do epico que esta no for
+                    if (dependencia != null) {
+                        dependencias.add(dependencia); // só adiciona
+                    }
+                }
+                epico.setDependencias(dependencias);
+            }
 
+            return repository.save(epico);
+        
+            
             return repository.save(epico);
         }
         catch (NotFoundException e)
