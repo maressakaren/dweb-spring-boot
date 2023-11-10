@@ -21,19 +21,19 @@ public class TipoTarefaApplication {
     public TipoTarefa create(TipoTarefaDTO tipoTarefaDTO){
         
         TipoTarefa tipotarefa = new TipoTarefa(); 
-        List<Tarefa> Tipo
+        List<Tarefa> Tipo;
 
         tipotarefa.setDescricao(tipoTarefaDTO.getDescricao());
         tipotarefa.setFk_histor_usuario(tipoTarefaDTO.getFk_histor_usuario());
         if (tipoTarefaDTO.getDepenciasId() != null) {
                 List<TipoTarefa> dependencias = new ArrayList<>();
-                for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { // para cada dependencia no epico
-                    TipoTarefa dependencia = this.getById(dependenciaId); // get by id - Recebe a dependencia do epico que esta no for
+                for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 
+                    TipoTarefa dependencia = this.getById(dependenciaId); 
                     if (dependencia != null) {
-                        dependencias.add(dependencia); // só adiciona
+                        dependencias.add(dependencia); 
                     }
                 }
-                tipotarefa.(dependencias);//
+                tipotarefa.(dependencias);
             }
         return repository.save(tipotarefa);
     }
