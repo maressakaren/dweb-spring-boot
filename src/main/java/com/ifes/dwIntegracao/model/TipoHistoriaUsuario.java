@@ -22,8 +22,7 @@ public class TipoHistoriaUsuario
     @JoinColumn(name = "tipo_epico" )
     private TipoEpico tipoEpico;
 
-    @ElementCollection
-    @Embedded
-    private List<DependenciasTipoHU> dependencias;
+    @ManyToMany (cascade =  CascadeType.ALL)
+    private List<TipoHistoriaUsuario> dependencias;
 
 }

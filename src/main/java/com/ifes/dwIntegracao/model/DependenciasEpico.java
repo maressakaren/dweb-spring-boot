@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @NoArgsConstructor
 
-public class DependenciaEpico {
+public class DependenciasEpico {
     private int id;
 
-    DependenciaEpico (int id){
+    DependenciasEpico (int id){
         this.id = id;
     }
 }

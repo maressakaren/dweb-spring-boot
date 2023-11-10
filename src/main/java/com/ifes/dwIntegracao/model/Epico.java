@@ -29,7 +29,7 @@ public class Epico
    @JoinColumn(name = "id_categoria" )
    private Categoria categoria;
 
-   @ManyToOne
+   @ManyToOne (cascade =  CascadeType.ALL)
    @JoinColumn(name = "id_projeto")
    private Projeto projeto;
 
@@ -37,8 +37,10 @@ public class Epico
    @JoinColumn(name = "id_tipoEpico")
    private TipoEpico tipoEpico;
 
-   @ElementCollection
-   @Embedded
-   private List<DependenciaEpico> dependencias;
+   @ManyToMany(cascade = CascadeType.ALL)
+   @JoinTable(name = "dependencias_epico",
+               joinColumns = @JoinColumn(name = "epico_id"),
+               inverseJoinColumns = @JoinColumn(name = "dependencia_id"))
+    private List<Epico> dependencias;
    
 }

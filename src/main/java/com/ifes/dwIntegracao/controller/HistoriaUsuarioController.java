@@ -24,8 +24,8 @@ public class HistoriaUsuarioController {
 
     private HistoriaUsuarioApplication application;
 
-    @PostMapping("Gerar/")
-    public List<HistoriaUsuario> gerar(){
+    @PostMapping("Gerar/{id}")
+    public List<HistoriaUsuario> gerar(@PathVariable int id){
         return null;
     }
     

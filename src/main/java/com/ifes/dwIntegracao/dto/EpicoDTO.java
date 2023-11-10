@@ -3,8 +3,9 @@ package com.ifes.dwIntegracao.dto;
 import java.util.List;
 
 import com.ifes.dwIntegracao.model.Categoria;
-import com.ifes.dwIntegracao.model.DependenciaEpico;
+import com.ifes.dwIntegracao.model.DependenciasEpico;
 import com.ifes.dwIntegracao.model.DependenciasTipoHU;
+import com.ifes.dwIntegracao.model.Epico;
 import com.ifes.dwIntegracao.model.Projeto;
 import com.ifes.dwIntegracao.model.Relevancia;
 import com.ifes.dwIntegracao.model.TipoEpico;
@@ -26,6 +27,6 @@ public class EpicoDTO
 
    private int tipoEpico_id;
 
-   private List<DependenciaEpico> dependencias;
+   private List<int> dependencias;
 
 }

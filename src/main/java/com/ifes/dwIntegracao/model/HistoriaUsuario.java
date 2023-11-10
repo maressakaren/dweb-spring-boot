@@ -2,11 +2,21 @@ package com.ifes.dwIntegracao.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.ManyToAny;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -26,17 +36,18 @@ public class HistoriaUsuario {
     @Column(name ="descricao")
     private String descricao;
 
-    @Column(name = "relevancia")
-    private String relevancia;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Relevancia relevancia;
 
-    @Column(name = "categoria")
-    private String categoria;
-
+    @ManyToOne
+    @JoinColumn
+    private Categoria categoria;
+   
+    @ManyToOne
+    @JoinColumn
+    private Epico epico;
     
-    @Column(name = "fk_epico")
-    private int fk_epico;
-    
-    @Column(name = "fk_tarefas")
-
-    private List<Integer> dependencias; //Arrumar isso depois 
+    @ManyToMany (cascade =  CascadeType.ALL)
+    private List<TipoHistoriaUsuario> dependencias; 
 }
