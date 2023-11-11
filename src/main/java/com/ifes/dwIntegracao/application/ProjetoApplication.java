@@ -16,7 +16,7 @@ import java.util.Optional;
 public class ProjetoApplication
 {
     @Autowired
-    ProjetoRepository projetoRepository;
+    private ProjetoRepository projetoRepository;
 
     public Projeto create(ProjetoDTO projetoDTO)
     {

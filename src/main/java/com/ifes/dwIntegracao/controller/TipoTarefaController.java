@@ -21,7 +21,7 @@ import com.ifes.dwIntegracao.model.TipoTarefa;
 @RestController
 public class TipoTarefaController {
     @Autowired
-    TipoTarefaApplication application;
+    private TipoTarefaApplication application;
 
     @PostMapping("Criar/")
     public TipoTarefa create(@RequestBody TipoTarefaDTO tipoTarefaDTO){

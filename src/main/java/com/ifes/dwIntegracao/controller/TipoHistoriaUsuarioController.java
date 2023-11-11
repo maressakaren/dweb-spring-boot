@@ -18,7 +18,7 @@ import com.ifes.dwIntegracao.model.TipoHistoriaUsuario;
 @RequestMapping("Tipo_Historia_Usuario")
 public class TipoHistoriaUsuarioController{
     @Autowired
-    TipoHistoriaUsuarioApplication tipoHUApplication;
+    private TipoHistoriaUsuarioApplication tipoHUApplication;
 
    @PostMapping("Cadastrar/")
     public TipoHistoriaUsuario create(@RequestBody TipoHistoriaUsuarioDTO tipoHUdto, @PathVariable int id)

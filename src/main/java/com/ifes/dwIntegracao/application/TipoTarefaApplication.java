@@ -15,7 +15,7 @@ import com.ifes.dwIntegracao.repository.TipoTarefaRepository;
 @Component
 public class TipoTarefaApplication {
     @Autowired
-    TipoTarefaRepository repository;
+    private TipoTarefaRepository repository;
 
     public TipoTarefa create(TipoTarefaDTO tipoTarefaDTO){
         

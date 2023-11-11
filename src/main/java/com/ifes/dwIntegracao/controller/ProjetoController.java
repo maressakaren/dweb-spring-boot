@@ -24,7 +24,7 @@ import com.ifes.dwIntegracao.model.Projeto;
 @RequestMapping("projeto")
 public class ProjetoController{
     @Autowired
-    ProjetoApplication projetoApplication;
+    private ProjetoApplication projetoApplication;
 
    @PostMapping("Cadastrar")
     public Projeto create(@RequestBody ProjetoDTO projetoDto)

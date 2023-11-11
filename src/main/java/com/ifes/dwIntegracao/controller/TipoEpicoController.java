@@ -14,7 +14,7 @@ import java.util.List;
 public class TipoEpicoController
 {
     @Autowired
-    TipoEpicoApplication tipoEpicoApplication;
+    private TipoEpicoApplication tipoEpicoApplication;
 
     @PostMapping("criar")
     public TipoEpico create(@RequestBody TipoEpicoDTO tipoEpicoDTO)

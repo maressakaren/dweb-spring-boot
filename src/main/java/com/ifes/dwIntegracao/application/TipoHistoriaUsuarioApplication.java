@@ -16,10 +16,11 @@ import com.ifes.dwIntegracao.repository.TipoHistoriaUsuarioRepository;
 @Component
 public class TipoHistoriaUsuarioApplication {
     @Autowired
-    TipoHistoriaUsuarioRepository tipoHURepository;
+    private TipoHistoriaUsuarioRepository tipoHURepository;
     @Autowired
-    TipoEpicoRepository tErepository;
-    TipoEpicoApplication appTipoEpico;
+    private TipoEpicoRepository tErepository;
+    @Autowired
+    private TipoEpicoApplication appTipoEpico;
 
     public TipoHistoriaUsuario create(TipoHistoriaUsuarioDTO tipoHUdto){
 
@@ -27,7 +28,7 @@ public class TipoHistoriaUsuarioApplication {
 
         try {
             tipoHU.setDescricao(tipoHUdto.getDescricao());
-            tipoHU.setTipoEpico(appTipoEpico.retrieve(tipoHUdto.getIdEpico()));
+            tipoHU.setTipoEpico(appTipoEpico.retrieve((tipoHUdto.getIdEpico())));
             /*if (tipoHU.getDependencias() != null) {
                 List<TipoHistoriaUsuario> dependencias = new ArrayList<>();
                 for (Integer dependenciaId : tipoHUdto.getDependencias()) { // para cada dependencia no epico

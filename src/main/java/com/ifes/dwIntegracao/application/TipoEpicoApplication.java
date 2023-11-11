@@ -20,23 +20,32 @@ import java.util.Optional;
 public class TipoEpicoApplication
 {
     @Autowired
-    TipoEpicoRepository repository;
-    TipoHistoriaUsuarioRepository tipoHUrepository;
+    private TipoEpicoRepository repository;
+    private TipoHistoriaUsuarioRepository tipoHUrepository;
+    private TipoHistoriaUsuarioApplication thAplication;
 
     public TipoEpico create(TipoEpicoDTO tipoEpicoDTO)
     {
         TipoEpico tipoEpico;
 
         tipoEpico = new TipoEpico();
-        tipoEpico.setDescricao(tipoEpicoDTO.getDescricao());
-        List<TipoHistoriaUsuario> historiasUsuario = new ArrayList<>();
-        for (Integer tipoHUId : tipoEpicoDTO.getTiposHuser()) {
-            TipoHistoriaUsuario tipoHU = tipoHUrepository.findById(tipoHUId).orElse(null);
-            if (tipoHU != null) {
-                historiasUsuario.add(tipoHU);
+        try {
+            tipoEpico.setDescricao(tipoEpicoDTO.getDescricao());
+            if(tipoEpicoDTO.getTiposHuser()!=null){
+                List<TipoHistoriaUsuario> historiasUsuario = new ArrayList<>();
+                for (Integer tipoHUId : tipoEpicoDTO.getTiposHuser()) {
+                    TipoHistoriaUsuario tipoHU = this.thAplication.getById(tipoHUId);
+                    if (tipoHU != null) {
+                        historiasUsuario.add(tipoHU);
+                    }
+                }
+                tipoEpico.setHistoriasUser(historiasUsuario);
             }
+            this.repository.save(tipoEpico);
+        } catch (NotFoundException e) {
+            e.getMessage();
         }
-        tipoEpico.setHistoriasUser(historiasUsuario);
+        
         return repository.save(tipoEpico);
         
     }
