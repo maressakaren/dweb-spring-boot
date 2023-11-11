@@ -93,7 +93,7 @@ public class EpicoApplication
                 epico.setDependencias(dependencias);
             }
 
-            //return repository.save(epico);
+            return repository.save(epico);
         }
         catch (NotFoundException e)
         {
