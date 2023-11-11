@@ -37,14 +37,14 @@ public class HistoriaUsuario {
     @Enumerated(EnumType.STRING)
     private Relevancia relevancia;
 
-    @ManyToOne
-    @JoinColumn
-    private Categoria categoria;
+    /*@ManyToOne
+    @JoinColumn*/
+    private String categoria;
    
     @ManyToOne
     @JoinColumn
     private Epico epico;
     
-    @ManyToMany (cascade =  CascadeType.ALL)
-    private List<TipoHistoriaUsuario> dependencias; 
+    /*@ManyToMany (cascade =  CascadeType.ALL)
+    private List<TipoHistoriaUsuario> dependencias; */
 }

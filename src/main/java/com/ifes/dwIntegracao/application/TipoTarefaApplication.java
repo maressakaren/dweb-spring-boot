@@ -21,24 +21,20 @@ public class TipoTarefaApplication {
         
         TipoTarefa tipotarefa = new TipoTarefa(); 
 
-        try {
-            tipotarefa.setDescricao(tipoTarefaDTO.getDescricao());
-            tipotarefa.setFk_histor_usuario(tipoTarefaDTO.getFk_histor_usuario());
-            if (tipoTarefaDTO.getDepenciasId() != null) {
-                List<TipoTarefa> dependencias = new ArrayList<>();
-                for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 
-                    TipoTarefa dependencia = this.getById(dependenciaId); 
-                    if (dependencia != null) {
-                        dependencias.add(dependencia);
-                    }
-            
+        tipotarefa.setDescricao(tipoTarefaDTO.getDescricao());
+        tipotarefa.setFk_histor_usuario(tipoTarefaDTO.getFk_histor_usuario());
+        /*if (tipoTarefaDTO.getDepenciasId() != null) {
+            List<TipoTarefa> dependencias = new ArrayList<>();
+            for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 
+                TipoTarefa dependencia = this.getById(dependenciaId); 
+                if (dependencia != null) {
+                    dependencias.add(dependencia);
                 }
-                tipotarefa.setIdsTarefas(dependencias);
+        
             }
-            this.repository.save(tipotarefa);
-        } catch (NotFoundException e) {
-            e.getMessage();
-        }
+            tipotarefa.setIdsTarefas(dependencias);
+        }*/
+        this.repository.save(tipotarefa);
 
         return null;
     
@@ -66,7 +62,7 @@ public class TipoTarefaApplication {
             tipoTarefa = this.getById(id);
             tipoTarefa.setDescricao(tipoTarefaDTO.getDescricao());
             tipoTarefa.setFk_histor_usuario(tipoTarefaDTO.getFk_histor_usuario());
-            if (tipoTarefaDTO.getDepenciasId() != null) {
+            /*if (tipoTarefaDTO.getDepenciasId() != null) {
                 List<TipoTarefa> dependencias = new ArrayList<>();
                 for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 
                     TipoTarefa dependencia = this.getById(dependenciaId); 
@@ -76,7 +72,7 @@ public class TipoTarefaApplication {
             
                 }
                 tipoTarefa.setIdsTarefas(dependencias);
-            }
+            }*/
             this.repository.save(tipoTarefa);
            
         } catch (NotFoundException e) {

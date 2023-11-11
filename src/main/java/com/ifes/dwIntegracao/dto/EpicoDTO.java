@@ -17,12 +17,12 @@ public class EpicoDTO
    @JsonFormat(shape = JsonFormat.Shape.STRING)
    private Relevancia relevancia;
 
-   private int categoria;
+   private String categoria;
 
    private int projeto_id;
 
    private int tipoEpico_id;
 
-   private List<Integer> dependencias;
+  // private List<Integer> dependenciasEpico;
 
 }

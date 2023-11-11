@@ -32,14 +32,14 @@ public class HistoriaUsuarioApplication {
         try {
             Epico epico = epicoApplication.retrieve(id);
             
-            for (TipoHistoriaUsuario tipoHU : epico.getTipoEpico().getDependencias()) {
+            for (TipoHistoriaUsuario tipoHU : epico.getTipoEpico().getHistoriasUser()) {
                 String[] texto = epico.getTitulo().split("\\s+");
                 
                 HistoriaUsuario histUser = new HistoriaUsuario();
                 histUser.setCategoria(epico.getCategoria());
                 histUser.setRelevancia(epico.getRelevancia());
                 histUser.setEpico(epico);
-                histUser.setDependencias(epico.getTipoEpico().getDependencias());
+                //histUser.setDependencias(epico.getTipoEpico().getDependencias());
                 histUser.setDescricao(epico.getDescricao());
 
                 String titulo = epico.getTitulo().substring(0, 3) + tipoHU.getDescricao() + " " + texto[texto.length - 1];
@@ -55,14 +55,14 @@ public class HistoriaUsuarioApplication {
 
     public HistoriaUsuario getById(int id)throws NotFoundException{
 
-        Optional<HistoriaUsuario> opitional = repository.findById(id);
+        var opitional = repository.findById(id);
         HistoriaUsuario hUser;
 
-        if(opitional!=null){
+        if(opitional.isEmpty()){
             hUser = opitional.get();
             return hUser;
         }
-        throw new NotFoundException(null);
+        throw new NotFoundException("Historia não encontrada.");
     }
 
     public List<HistoriaUsuario> getAll(){
@@ -79,19 +79,8 @@ public class HistoriaUsuarioApplication {
             hUser.setCategoria(dto.getCategoria());
             hUser.setDescricao(dto.getDescricao());
             hUser.setEpico(dto.getEpico());
-            if(dto.getDependencias()!=null){
-                List<TipoHistoriaUsuario> dependencias = new ArrayList<>();
-                
-                for(Integer tipoHU_id: dto.getDependencias()){
-                    TipoHistoriaUsuario historia = tipoHApplicatio.getById(tipoHU_id);
-                    if(historia != null){
-                        dependencias.add(historia);
-                    }
-
-                }
-                hUser.setDependencias(dependencias);
-            }
             this.repository.save(hUser);
+              
            
         } catch (NotFoundException e) {
             e.getMessage();

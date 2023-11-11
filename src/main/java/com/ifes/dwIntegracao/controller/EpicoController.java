@@ -16,8 +16,8 @@ public class EpicoController {
     private EpicoApplication epicoApplication;
 
     @PostMapping("novo/")
-    public void create(@RequestBody EpicoDTO dto) {
-        System.out.println( epicoApplication.create(dto));
+    public Epico create(@RequestBody EpicoDTO dto) {
+        return epicoApplication.create(dto);
     }
 
     @GetMapping("Buscar/{id}")

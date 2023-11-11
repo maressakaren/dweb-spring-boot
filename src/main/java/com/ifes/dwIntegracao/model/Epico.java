@@ -25,9 +25,9 @@ public class Epico
    @Enumerated(EnumType.STRING)
    private Relevancia relevancia;
 
-   @OneToOne
-   @JoinColumn(name = "id_categoria" )
-   private Categoria categoria;
+   /*@OneToOne
+   @JoinColumn(name = "id_categoria" )*/
+   private String categoria;
 
    @ManyToOne (cascade =  CascadeType.ALL)
    @JoinColumn(name = "id_projeto")
@@ -37,10 +37,11 @@ public class Epico
    @JoinColumn(name = "id_tipoEpico")
    private TipoEpico tipoEpico;
 
-   @ManyToMany(cascade = CascadeType.ALL)
+   /*@ManyToMany(cascade = CascadeType.ALL)
    @JoinTable(name = "dependencias_epico",
                joinColumns = @JoinColumn(name = "epico_id"),
                inverseJoinColumns = @JoinColumn(name = "dependencia_id"))
     private List<Epico> dependencias;
+    */
    
 }

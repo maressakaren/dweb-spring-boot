@@ -17,10 +17,10 @@ public class HistoriaUsuarioDTO {
 
     private Relevancia relevancia;
     
-    private Categoria categoria;
+    private String categoria;
 
     private Epico epico;
     
-    private List<Integer> dependencias;
+    //private List<Integer> dependencias;
     
 }

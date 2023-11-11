@@ -3,11 +3,15 @@ package com.ifes.dwIntegracao.application;
 import com.ifes.dwIntegracao.dto.TipoEpicoDTO;
 import com.ifes.dwIntegracao.exception.NotFoundException;
 import com.ifes.dwIntegracao.model.TipoEpico;
+import com.ifes.dwIntegracao.model.TipoHistoriaUsuario;
 import com.ifes.dwIntegracao.repository.TipoEpicoRepository;
+import com.ifes.dwIntegracao.repository.TipoHistoriaUsuarioRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,16 +21,24 @@ public class TipoEpicoApplication
 {
     @Autowired
     TipoEpicoRepository repository;
+    TipoHistoriaUsuarioRepository tipoHUrepository;
 
     public TipoEpico create(TipoEpicoDTO tipoEpicoDTO)
     {
         TipoEpico tipoEpico;
 
         tipoEpico = new TipoEpico();
-        //tipoEpico.setNome(tipoEpicoDTO.getNome());
         tipoEpico.setDescricao(tipoEpicoDTO.getDescricao());
-
+        List<TipoHistoriaUsuario> historiasUsuario = new ArrayList<>();
+        for (Integer tipoHUId : tipoEpicoDTO.getTiposHuser()) {
+            TipoHistoriaUsuario tipoHU = tipoHUrepository.findById(tipoHUId).orElse(null);
+            if (tipoHU != null) {
+                historiasUsuario.add(tipoHU);
+            }
+        }
+        tipoEpico.setHistoriasUser(historiasUsuario);
         return repository.save(tipoEpico);
+        
     }
 
     public TipoEpico retrieve(int id) throws NotFoundException

@@ -25,8 +25,9 @@ public class HistoriaUsuarioController {
     private HistoriaUsuarioApplication application;
 
     @PostMapping("Gerar/{id}")
-    public List<HistoriaUsuario> gerar(@PathVariable int id){
-        return null;
+    public List<HistoriaUsuario> gerar(@PathVariable String id){
+        int id2 = Integer.parseInt(id);
+        return application.gera(id2);
     }
     
     @GetMapping("Pesquisar/{id}")

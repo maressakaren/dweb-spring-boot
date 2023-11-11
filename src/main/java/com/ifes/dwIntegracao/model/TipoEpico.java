@@ -21,5 +21,5 @@ public class TipoEpico
     private String descricao;
 
     @ManyToMany (cascade =  CascadeType.ALL)
-    private List<TipoHistoriaUsuario> dependencias = new ArrayList<>();
+    private List<TipoHistoriaUsuario> historiasUser = new ArrayList<>();
 }

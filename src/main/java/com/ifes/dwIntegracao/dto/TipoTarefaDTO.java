@@ -8,6 +8,6 @@ import java.util.List;
 public class TipoTarefaDTO {
     private String descricao;
     private int fk_histor_usuario;
-    private List<Integer> depenciasId;
+    //private List<Integer> depenciasId;
    
 }

@@ -28,7 +28,7 @@ public class TipoHistoriaUsuarioApplication {
         try {
             tipoHU.setDescricao(tipoHUdto.getDescricao());
             tipoHU.setTipoEpico(appTipoEpico.retrieve(tipoHUdto.getIdEpico()));
-            if (tipoHU.getDependencias() != null) {
+            /*if (tipoHU.getDependencias() != null) {
                 List<TipoHistoriaUsuario> dependencias = new ArrayList<>();
                 for (Integer dependenciaId : tipoHUdto.getDependencias()) { // para cada dependencia no epico
                     TipoHistoriaUsuario dependencia = this.getById(dependenciaId); // get by id - Recebe a dependencia do epico que esta no for
@@ -38,6 +38,7 @@ public class TipoHistoriaUsuarioApplication {
                 }
                 tipoHU.setDependencias(dependencias);//
             }
+            */
             tipoHURepository.save(tipoHU);
         
         } catch (NotFoundException e) {
@@ -68,7 +69,7 @@ public class TipoHistoriaUsuarioApplication {
         try {
             tipoHU = getById(id);
             tipoHU.setDescricao(tipoHUdto.getDescricao());
-        
+            /*
 
                         //vai ficar aqui
             if (tipoHU.getDependencias() != null) {
@@ -81,7 +82,7 @@ public class TipoHistoriaUsuarioApplication {
                 }
                 tipoHU.setDependencias(dependencias);//
             }
-            
+            */
             tipoHURepository.save(tipoHU); 
 
         }catch (NotFoundException e)

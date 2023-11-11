@@ -26,8 +26,9 @@ public class TipoTarefa {
     @Column(name = "fk_tipo_historia_usuario_id")
     private int fk_histor_usuario;
     
-    @ManyToMany (cascade =  CascadeType.ALL)
+    /*@ManyToMany (cascade =  CascadeType.ALL)
     private List<TipoTarefa> idsTarefas;
+    */
 
         
 }

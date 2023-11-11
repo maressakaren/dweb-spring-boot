@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 @Service
@@ -31,14 +34,21 @@ public class EpicoApplication
         epico.setTitulo(epicoDTO.getTitulo());
         epico.setDescricao(epicoDTO.getDescricao());
         epico.setRelevancia(epicoDTO.getRelevancia());
-        System.out.println(epicoDTO);
+        System.out.println(epico);
         
         try{
-            epico.setCategoria(categoriaApplication.retrieve(epicoDTO.getCategoria()));
+            epico.setCategoria(epicoDTO.getCategoria());
             epico.setProjeto(projetoApplication.getById(epicoDTO.getProjeto_id()));
             epico.setTipoEpico(tipoEpicoApplication.retrieve(epicoDTO.getTipoEpico_id()));
-            if (epicoDTO.getDependencias() != null) {
-                List<Epico> dependencias = new ArrayList<>();
+            /*if (epico.getTipoEpico().getHistoriasUser()!=null) {
+                List<Epico> dependencias = (epicoDTO.getDependenciasEpico()).stream()
+                .map(id -> repository.findById(id).orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+                epico.setDependencias(dependencias);
+            }
+            return repository.save(epico);
+                /*List<Epico> dependencias = new ArrayList<>();
                 for (Integer dependenciaId : epicoDTO.getDependencias()) {
                     Epico dependencia = this.retrieve(dependenciaId);
                     if (dependencia != null) {
@@ -46,8 +56,10 @@ public class EpicoApplication
                     }
                 }
                 epico.setDependencias(dependencias);
-            }
+            }*/
+            System.out.println(epico);
             return repository.save(epico);
+            
 
         } catch (NotFoundException e) {
             e.getMessage();
@@ -80,19 +92,15 @@ public class EpicoApplication
             epico.setTitulo(epicoDTO.getTitulo());
             epico.setDescricao(epicoDTO.getDescricao());
             epico.setRelevancia(epicoDTO.getRelevancia());
-           // epico.setDependencias(epicoDTO.getDependencias());
-            if (epicoDTO.getDependencias() != null) {
-                List<Epico> dependencias = new ArrayList<>();
-                for (Integer dependenciaId : epicoDTO.getDependencias()) {
-                    Epico dependencia = this.retrieve(dependenciaId);
-                    if (dependencia != null) {
-                        dependencias.add(dependencia);
-                    }
-                }
+           /*if (epico.getTipoEpico().getHistoriasUser()!=null) {
+                List<Epico> dependencias = (epicoDTO.getDependenciasEpico()).stream()
+                .map(ids -> repository.findById(ids).orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
                 epico.setDependencias(dependencias);
-            }
-
+            }*/
             return repository.save(epico);
+
         }
         catch (NotFoundException e)
         {
