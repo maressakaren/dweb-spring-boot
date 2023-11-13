@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.ifes.dwIntegracao.application.TipoEpicoApplication;
 import com.ifes.dwIntegracao.application.TipoHistoriaUsuarioApplication;
 import com.ifes.dwIntegracao.dto.TipoHistoriaUsuarioDTO;
 import com.ifes.dwIntegracao.exception.NotFoundException;
+import com.ifes.dwIntegracao.model.TipoEpico;
 import com.ifes.dwIntegracao.model.TipoHistoriaUsuario;
 
 
@@ -19,9 +21,9 @@ import com.ifes.dwIntegracao.model.TipoHistoriaUsuario;
 public class TipoHistoriaUsuarioController{
     @Autowired
     private TipoHistoriaUsuarioApplication tipoHUApplication;
-
+    
    @PostMapping("Cadastrar/")
-    public TipoHistoriaUsuario create(@RequestBody TipoHistoriaUsuarioDTO tipoHUdto, @PathVariable int id)
+    public TipoHistoriaUsuario create(@RequestBody TipoHistoriaUsuarioDTO tipoHUdto)
     {
         return tipoHUApplication.create(tipoHUdto);
     }

@@ -9,5 +9,5 @@ public class TipoEpicoDTO
 {
     //private String nome;
     private String descricao;
-    private List<Integer> tiposHuser;
+    /*private List<Integer> tiposHuser;*/
 }

@@ -1,26 +1,30 @@
 package com.ifes.dwIntegracao.application;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.ifes.dwIntegracao.dto.TipoHistoriaUsuarioDTO;
 import com.ifes.dwIntegracao.exception.NotFoundException;
 import com.ifes.dwIntegracao.model.TipoHistoriaUsuario;
-import com.ifes.dwIntegracao.repository.TipoEpicoRepository;
 import com.ifes.dwIntegracao.repository.TipoHistoriaUsuarioRepository;
 
+
 @Component
+@Service
 public class TipoHistoriaUsuarioApplication {
     @Autowired
     private TipoHistoriaUsuarioRepository tipoHURepository;
-    @Autowired
-    private TipoEpicoRepository tErepository;
-    @Autowired
-    private TipoEpicoApplication appTipoEpico;
+
+    private TipoEpicoApplication tipoEpicoAplication;
+    
+
+    public TipoHistoriaUsuarioApplication(TipoEpicoApplication tipoEpicoAplication){
+        this.tipoEpicoAplication = tipoEpicoAplication;
+    }
 
     public TipoHistoriaUsuario create(TipoHistoriaUsuarioDTO tipoHUdto){
 
@@ -28,24 +32,25 @@ public class TipoHistoriaUsuarioApplication {
 
         try {
             tipoHU.setDescricao(tipoHUdto.getDescricao());
-            tipoHU.setTipoEpico(appTipoEpico.retrieve((tipoHUdto.getIdEpico())));
-            /*if (tipoHU.getDependencias() != null) {
-                List<TipoHistoriaUsuario> dependencias = new ArrayList<>();
-                for (Integer dependenciaId : tipoHUdto.getDependencias()) { // para cada dependencia no epico
-                    TipoHistoriaUsuario dependencia = this.getById(dependenciaId); // get by id - Recebe a dependencia do epico que esta no for
-                    if (dependencia != null) {
-                        dependencias.add(dependencia); // só adiciona
-                    }
+            tipoHU.setTipoEpico(tipoEpicoAplication.retrieve(tipoHUdto.getIdEpico()));
+        /*if (tipoHU.getDependencias() != null) {
+            List<TipoHistoriaUsuario> dependencias = new ArrayList<>();
+            for (Integer dependenciaId : tipoHUdto.getDependencias()) { // para cada dependencia no epico
+                TipoHistoriaUsuario dependencia = this.getById(dependenciaId); // get by id - Recebe a dependencia do epico que esta no for
+                if (dependencia != null) {
+                    dependencias.add(dependencia); // só adiciona
                 }
-                tipoHU.setDependencias(dependencias);//
             }
-            */
-            tipoHURepository.save(tipoHU);
-        
+            tipoHU.setDependencias(dependencias);//
+        }
+        */
+        return tipoHURepository.save(tipoHU);
+
         } catch (NotFoundException e) {
             e.getMessage();
         }
         return null;
+
     }
 
     public TipoHistoriaUsuario getById(int id) throws NotFoundException{

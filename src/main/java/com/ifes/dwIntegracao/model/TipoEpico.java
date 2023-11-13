@@ -20,6 +20,8 @@ public class TipoEpico
     @Column(name = "descricao")
     private String descricao;
 
-    @ManyToMany (cascade =  CascadeType.ALL)
-    private List<TipoHistoriaUsuario> historiasUser = new ArrayList<>();
+    /*@OneToMany(mappedBy = "tipoEpico", cascade = CascadeType.ALL)
+    private List<TipoHistoriaUsuario> historiasUser;*/
+
+    
 }

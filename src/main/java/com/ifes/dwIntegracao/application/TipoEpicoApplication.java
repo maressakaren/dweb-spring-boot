@@ -3,15 +3,12 @@ package com.ifes.dwIntegracao.application;
 import com.ifes.dwIntegracao.dto.TipoEpicoDTO;
 import com.ifes.dwIntegracao.exception.NotFoundException;
 import com.ifes.dwIntegracao.model.TipoEpico;
-import com.ifes.dwIntegracao.model.TipoHistoriaUsuario;
 import com.ifes.dwIntegracao.repository.TipoEpicoRepository;
-import com.ifes.dwIntegracao.repository.TipoHistoriaUsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,32 +18,30 @@ public class TipoEpicoApplication
 {
     @Autowired
     private TipoEpicoRepository repository;
-    private TipoHistoriaUsuarioRepository tipoHUrepository;
-    private TipoHistoriaUsuarioApplication thAplication;
+    
 
     public TipoEpico create(TipoEpicoDTO tipoEpicoDTO)
     {
         TipoEpico tipoEpico;
 
         tipoEpico = new TipoEpico();
-        try {
+        tipoEpico.setDescricao(tipoEpicoDTO.getDescricao());
+
+        /*try {
             tipoEpico.setDescricao(tipoEpicoDTO.getDescricao());
             if(tipoEpicoDTO.getTiposHuser()!=null){
                 List<TipoHistoriaUsuario> historiasUsuario = new ArrayList<>();
-                for (Integer tipoHUId : tipoEpicoDTO.getTiposHuser()) {
-                    TipoHistoriaUsuario tipoHU = this.thAplication.getById(tipoHUId);
+                for (int tipoHUId : tipoEpicoDTO.getTiposHuser()) {
+                    TipoHistoriaUsuario tipoHU = tipoHUApplication.getById(tipoHUId);
                     if (tipoHU != null) {
                         historiasUsuario.add(tipoHU);
                     }
                 }
                 tipoEpico.setHistoriasUser(historiasUsuario);
             }
-            this.repository.save(tipoEpico);
-        } catch (NotFoundException e) {
-            e.getMessage();
-        }
-        
-        return repository.save(tipoEpico);
+            return t*/
+        return this.repository.save(tipoEpico);
+    
         
     }
 

@@ -3,6 +3,7 @@ package com.ifes.dwIntegracao.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,12 +23,12 @@ import com.ifes.dwIntegracao.model.HistoriaUsuario;
 
 public class HistoriaUsuarioController {
 
+    @Autowired
     private HistoriaUsuarioApplication application;
 
     @PostMapping("Gerar/{id}")
-    public List<HistoriaUsuario> gerar(@PathVariable String id){
-        int id2 = Integer.parseInt(id);
-        return application.gera(id2);
+    public List<HistoriaUsuario> gerar(@PathVariable int id){
+        return application.gera(id);
     }
     
     @GetMapping("Pesquisar/{id}")

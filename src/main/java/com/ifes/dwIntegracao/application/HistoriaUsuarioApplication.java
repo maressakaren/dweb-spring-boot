@@ -1,9 +1,8 @@
 package com.ifes.dwIntegracao.application;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -29,28 +28,36 @@ public class HistoriaUsuarioApplication {
 
     public List<HistoriaUsuario> gera(int id) {
         List<HistoriaUsuario> listaHU = new ArrayList<>();
+        List<TipoHistoriaUsuario> listaTHU = tipoHApplicatio.getAll();
         try {
             Epico epico = epicoApplication.retrieve(id);
-            
-            for (TipoHistoriaUsuario tipoHU : epico.getTipoEpico().getHistoriasUser()) {
-                String[] texto = epico.getTitulo().split("\\s+");
-                
-                HistoriaUsuario histUser = new HistoriaUsuario();
-                histUser.setCategoria(epico.getCategoria());
-                histUser.setRelevancia(epico.getRelevancia());
-                histUser.setEpico(epico);
-                //histUser.setDependencias(epico.getTipoEpico().getDependencias());
-                histUser.setDescricao(epico.getDescricao());
+            if(listaTHU!= null){
+                for (TipoHistoriaUsuario tipoHU : listaTHU) {
+                    if(tipoHU.getTipoEpico() == epico.getTipoEpico() ){
+                        HistoriaUsuario histUser = new HistoriaUsuario();                 
+                        histUser.setCategoria(epico.getCategoria());
+                        histUser.setRelevancia(epico.getRelevancia());
+                        histUser.setEpico(epico);
+                        histUser.setDescricao(epico.getDescricao());
+                        String titulo = this.geraTitulo(epico.getTitulo(), tipoHU.getDescricao());
+                        histUser.setTitulo(titulo);
+                        listaHU.add(histUser);
+                    }
+                }
 
-                String titulo = epico.getTitulo().substring(0, 3) + tipoHU.getDescricao() + " " + texto[texto.length - 1];
-                histUser.setTitulo(titulo);
-                listaHU.add(histUser);
             }
-            return listaHU;
+            System.out.println(listaHU);
+            return null;
         } catch (NotFoundException e) {
-            // Log ou relançar a exceção, dependendo dos requisitos
             throw new RuntimeException("Erro ao gerar História de Usuário", e);
         }
+    }
+    public String geraTitulo(String texto, String tipoHU){
+        String[] palavras = texto.split(" ");
+        String texto2 = String.join(" ", Arrays.copyOf(palavras, Math.min(4, palavras.length))) + tipoHU + palavras[palavras.length-1];
+
+        return texto2;
+
     }
 
     public HistoriaUsuario getById(int id)throws NotFoundException{
