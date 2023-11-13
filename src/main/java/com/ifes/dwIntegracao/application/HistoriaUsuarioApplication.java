@@ -47,14 +47,14 @@ public class HistoriaUsuarioApplication {
 
             }
             System.out.println(listaHU);
-            return null;
+            return this.repository.saveAll(listaHU);
         } catch (NotFoundException e) {
             throw new RuntimeException("Erro ao gerar História de Usuário", e);
         }
     }
     public String geraTitulo(String texto, String tipoHU){
         String[] palavras = texto.split(" ");
-        String texto2 = String.join(" ", Arrays.copyOf(palavras, Math.min(4, palavras.length))) + tipoHU + palavras[palavras.length-1];
+        String texto2 = String.join(" ", Arrays.copyOf(palavras, Math.min(4, palavras.length))) + " " + tipoHU + " " + palavras[palavras.length-1];
 
         return texto2;
 
