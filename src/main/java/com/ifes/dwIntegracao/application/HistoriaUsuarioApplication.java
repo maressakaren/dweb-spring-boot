@@ -23,12 +23,12 @@ public class HistoriaUsuarioApplication {
     @Autowired
     private EpicoApplication epicoApplication;
     @Autowired
-    private TipoHistoriaUsuarioApplication tipoHApplicatio;
+    private TipoHistoriaUsuarioApplication tipoHApplication;
 
 
     public List<HistoriaUsuario> gera(int id) {
         List<HistoriaUsuario> listaHU = new ArrayList<>();
-        List<TipoHistoriaUsuario> listaTHU = tipoHApplicatio.getAll();
+        List<TipoHistoriaUsuario> listaTHU = tipoHApplication.getAll();
         try {
             Epico epico = epicoApplication.retrieve(id);
             if(listaTHU!= null){
@@ -49,7 +49,7 @@ public class HistoriaUsuarioApplication {
             System.out.println(listaHU);
             return this.repository.saveAll(listaHU);
         } catch (NotFoundException e) {
-            throw new RuntimeException("Erro ao gerar História de Usuário", e);
+            throw new RuntimeException("Erro ao gerar História de Usuário.", e);
         }
     }
     public String geraTitulo(String texto, String tipoHU){
@@ -69,7 +69,7 @@ public class HistoriaUsuarioApplication {
             hUser = opitional.get();
             return hUser;
         }
-        throw new NotFoundException("Historia não encontrada.");
+        throw new NotFoundException("História não encontrada.");
     }
 
     public List<HistoriaUsuario> getAll(){
