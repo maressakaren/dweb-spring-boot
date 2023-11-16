@@ -30,14 +30,14 @@ public class TarefaApplication {
         List<Tarefa> listaTarefa = new ArrayList<>();
         List<TipoTarefa> listaTTarefa = tipoTarefaApplication.getAll();
         try {
-            HistoriaUsuario historiaUser = HistoriaUsuarioApplication.retrieve(id);
+            HistoriaUsuario historiaUser = HistoriaUsuarioApplication.retrieve(id);// não deveria ser huApplication?
             if(listaTTarefa!= null){
                 for (TipoTarefa tipoTarefa : listaTTarefa) {
-                    if(tipoTarefa.getTipoHistoriaUsuario() == historiaUser.getTipoHistoriaUsuario() ){
+                    if(tipoTarefa.setFk_histor_usuario() == historiaUser. ){// set não é para atuaizar um valor? voce deseja atualizar ou pegar? - historia de usuário precisar ser modificada parater um tipo, tem que concertar lá. 
                         Tarefa tarefa = new Tarefa();                 
-                        tarefa.setHistoriaUsuario(historiaUser);
+                        tarefa.setHistoriaUsuario(historiaUser); // tem um erro aqui
                         tarefa.setDescricao(historiaUser.getDescricao());
-                        String titulo = this.geraTitulo(historiaUser.getTitulo(), tipoHU.getDescricao());
+                        String titulo = this.geraTitulo(historiaUser.getTitulo(), tipoHU.getDescricao());// aqui tbm 
                         tarefa.setTitulo(titulo);
                         listaTarefa.add(tarefa);
                     }
