@@ -30,15 +30,16 @@ public class TarefaApplication {
         List<Tarefa> listaTarefa = new ArrayList<>();
         List<TipoTarefa> listaTTarefa = tipoTarefaApplication.getAll();
         try {
-            HistoriaUsuario historiaUser = HistoriaUsuarioApplication.retrieve(id);// não deveria ser huApplication?
+            HistoriaUsuario historiaUser = huApplication.retrieve(id);
             if(listaTTarefa!= null){
                 for (TipoTarefa tipoTarefa : listaTTarefa) {
-                    if(tipoTarefa.setFk_histor_usuario() == historiaUser. ){// set não é para atuaizar um valor? voce deseja atualizar ou pegar? - historia de usuário precisar ser modificada parater um tipo, tem que concertar lá. 
+                    if(tipoTarefa.getTipoHistoriaUsuario() == historiaUser.getTipoHistoriaUsuario() ){ 
                         Tarefa tarefa = new Tarefa();                 
-                        tarefa.setHistoriaUsuario(historiaUser); // tem um erro aqui
+                        tarefa.setHistoriaUsuario(historiaUser); 
                         tarefa.setDescricao(historiaUser.getDescricao());
-                        String titulo = this.geraTitulo(historiaUser.getTitulo(), tipoHU.getDescricao());// aqui tbm 
+                        String titulo = this.geraTitulo(historiaUser.getTitulo(), tipoTarefa.getDescricao()); 
                         tarefa.setTitulo(titulo);
+                        tarefa.setTipoTarefa(tipoTarefa);
                         listaTarefa.add(tarefa);
                     }
                 }
@@ -50,13 +51,14 @@ public class TarefaApplication {
             throw new RuntimeException("Erro ao gerar Tarefa.", e);
         }
     }
+    /*
     public String geraTitulo(String texto, String tipoTarefa){
         String[] palavras = texto.split(" ");
         String texto2 = String.join(" ", Arrays.copyOf(palavras, Math.min(4, palavras.length))) + " " + tipoTarefa + " " + palavras[palavras.length-1];
 
         return texto2;
 
-    }
+    }*/ //refazer
 
     public Tarefa getById(int id)throws NotFoundException{
 
@@ -80,8 +82,6 @@ public class TarefaApplication {
             tarefa= getById(id);
 
             tarefa.setTitulo(dto.getTitulo());
-            tarefa.setRelevancia(dto.getRelevancia());
-            tarefa.setCategoria(dto.getCategoria());
             tarefa.setDescricao(dto.getDescricao());
             tarefa.setHistoriaUsuario(dto.getHistoriaUsuario());
             this.repository.save(tarefa);

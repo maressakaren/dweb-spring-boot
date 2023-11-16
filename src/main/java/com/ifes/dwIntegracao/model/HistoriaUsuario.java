@@ -44,6 +44,10 @@ public class HistoriaUsuario {
     @ManyToOne
     @JoinColumn
     private Epico epico;
+
+    @ManyToOne
+    @JoinColumn
+    private TipoHistoriaUsuario tipoHistoriaUsuario;
     
     /*@ManyToMany (cascade =  CascadeType.ALL)
     private List<TipoHistoriaUsuario> dependencias; */

@@ -30,5 +30,9 @@ public class Tarefa {
     @Column(name ="descricao")
     private String descricao;
 
+    @ManyToOne
+    @JoinColumn
+    private TipoTarefa tipoTarefa;
+
 
 }
