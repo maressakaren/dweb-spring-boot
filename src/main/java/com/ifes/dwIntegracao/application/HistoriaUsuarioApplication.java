@@ -39,6 +39,7 @@ public class HistoriaUsuarioApplication {
                         histUser.setRelevancia(epico.getRelevancia());
                         histUser.setEpico(epico);
                         histUser.setDescricao(epico.getDescricao());
+                        histUser.setTipoHistoriaUsuario(tipoHU);
                         String titulo = this.geraTitulo(epico.getTitulo(), tipoHU.getDescricao());
                         histUser.setTitulo(titulo);
                         listaHU.add(histUser);
