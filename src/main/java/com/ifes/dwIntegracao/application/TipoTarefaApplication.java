@@ -16,25 +16,31 @@ import com.ifes.dwIntegracao.repository.TipoTarefaRepository;
 public class TipoTarefaApplication {
     @Autowired
     private TipoTarefaRepository repository;
+    @Autowired
+    private TipoHistoriaUsuarioApplication tarefaApplication;
 
     public TipoTarefa create(TipoTarefaDTO tipoTarefaDTO){
         
         TipoTarefa tipotarefa = new TipoTarefa(); 
-
-        tipotarefa.setDescricao(tipoTarefaDTO.getDescricao());
-        tipotarefa.setFk_histor_usuario(tipoTarefaDTO.getFk_histor_usuario());
-        /*if (tipoTarefaDTO.getDepenciasId() != null) {
-            List<TipoTarefa> dependencias = new ArrayList<>();
-            for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 
-                TipoTarefa dependencia = this.getById(dependenciaId); 
-                if (dependencia != null) {
-                    dependencias.add(dependencia);
+        try {
+            
+            tipotarefa.setDescricao(tipoTarefaDTO.getDescricao());
+            tipotarefa.setHistoriaUser(tarefaApplication.getById(tipoTarefaDTO.getFk_histor_usuario()));
+            /*if (tipoTarefaDTO.getDepenciasId() != null) {
+                List<TipoTarefa> dependencias = new ArrayList<>();
+                for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 
+                    TipoTarefa dependencia = this.getById(dependenciaId); 
+                    if (dependencia != null) {
+                        dependencias.add(dependencia);
+                    }
+            
                 }
-        
-            }
-            tipotarefa.setIdsTarefas(dependencias);
-        }*/
-        this.repository.save(tipotarefa);
+                tipotarefa.setIdsTarefas(dependencias);
+            }*/
+        return this.repository.save(tipotarefa);
+        } catch (NotFoundException e) {
+            e.getMessage();
+        }
 
         return null;
     
@@ -61,7 +67,7 @@ public class TipoTarefaApplication {
         try {
             tipoTarefa = this.getById(id);
             tipoTarefa.setDescricao(tipoTarefaDTO.getDescricao());
-            tipoTarefa.setFk_histor_usuario(tipoTarefaDTO.getFk_histor_usuario());
+            tipoTarefa.setHistoriaUser(tarefaApplication.getById(tipoTarefaDTO.getFk_histor_usuario()));
             /*if (tipoTarefaDTO.getDepenciasId() != null) {
                 List<TipoTarefa> dependencias = new ArrayList<>();
                 for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 

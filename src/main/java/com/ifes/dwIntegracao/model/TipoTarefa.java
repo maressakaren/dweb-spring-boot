@@ -6,7 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import java.util.List;
@@ -23,8 +25,9 @@ public class TipoTarefa {
     @Column(name = "descricao")
     private String descricao;
 
-    @Column(name = "fk_tipo_historia_usuario_id")
-    private int fk_histor_usuario;
+    @ManyToOne
+    @JoinColumn
+    private TipoHistoriaUsuario historiaUser;
     
     /*@ManyToMany (cascade =  CascadeType.ALL)
     private List<TipoTarefa> idsTarefas;
