@@ -40,7 +40,7 @@ public class HistoriaUsuario {
     /*@ManyToOne
     @JoinColumn*/
     private String categoria;
-   
+
     @ManyToOne
     @JoinColumn
     private Epico epico;

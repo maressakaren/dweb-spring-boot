@@ -88,11 +88,11 @@ public class HistoriaUsuarioApplication {
             hUser.setDescricao(dto.getDescricao());
             hUser.setEpico(dto.getEpico());
             this.repository.save(hUser);
-              
-           
+            
+            
         } catch (NotFoundException e) {
             e.getMessage();
-          
+        
         } 
 
     }

@@ -13,9 +13,11 @@ public class TarefaDTO {
 
     private String descricao;
 
-    private int historiaUserId;
+    private HistoriaUsuario historiaUsuario;
 
-    private int tipoTarefaId;
+    //private int historiaUserId;
+
+    //private int tipoTarefaId;
     
     //private List<Integer> dependencias;
     

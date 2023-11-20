@@ -27,7 +27,7 @@ public class TipoTarefa {
 
     @ManyToOne
     @JoinColumn
-    private TipoHistoriaUsuario historiaUser;
+    private TipoHistoriaUsuario tipoHistoriaUsuario;
     
     /*@ManyToMany (cascade =  CascadeType.ALL)
     private List<TipoTarefa> idsTarefas;

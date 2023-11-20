@@ -30,7 +30,7 @@ public class TarefaApplication {
         List<Tarefa> listaTarefa = new ArrayList<>();
         List<TipoTarefa> listaTTarefa = tipoTarefaApplication.getAll();
         try {
-            HistoriaUsuario historiaUser = huApplication.retrieve(id);
+            HistoriaUsuario historiaUser = huApplication.getById(id);
             if(listaTTarefa!= null){
                 for (TipoTarefa tipoTarefa : listaTTarefa) {
                     if(tipoTarefa.getTipoHistoriaUsuario() == historiaUser.getTipoHistoriaUsuario() ){ 
@@ -51,14 +51,16 @@ public class TarefaApplication {
             throw new RuntimeException("Erro ao gerar Tarefa.", e);
         }
     }
-    /*
-    public String geraTitulo(String texto, String tipoTarefa){
-        String[] palavras = texto.split(" ");
-        String texto2 = String.join(" ", Arrays.copyOf(palavras, Math.min(4, palavras.length))) + " " + tipoTarefa + " " + palavras[palavras.length-1];
+    public String geraTitulo(String textoHistoriaUsuario, String tipoTarefa) {
 
-        return texto2;
-
-    }*/ //refazer
+        String[] palavras = textoHistoriaUsuario.split(" ");// Separa o texto da história de usuário em palavras
+        String[] palavrasTitulo = Arrays.copyOfRange(palavras, 3, palavras.length);// Remove as palavras indesejadas do início do título
+        palavrasTitulo[palavrasTitulo.length - 1] = tipoTarefa;// Adiciona o tipo de tarefa ao final do título
+        String titulo = String.join(" ", palavrasTitulo);// Junta as palavras do título em uma string
+    
+        return titulo;
+    }
+    
 
     public Tarefa getById(int id)throws NotFoundException{
 
@@ -85,11 +87,11 @@ public class TarefaApplication {
             tarefa.setDescricao(dto.getDescricao());
             tarefa.setHistoriaUsuario(dto.getHistoriaUsuario());
             this.repository.save(tarefa);
-              
-           
+            
+        
         } catch (NotFoundException e) {
             e.getMessage();
-          
+        
         } 
 
     }

@@ -32,6 +32,10 @@ public class Tarefa {
 
     @ManyToOne
     @JoinColumn
+    private HistoriaUsuario historiaUsuario;
+
+    @ManyToOne
+    @JoinColumn
     private TipoTarefa tipoTarefa;
 
 

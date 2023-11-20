@@ -17,15 +17,15 @@ public class TipoTarefaApplication {
     @Autowired
     private TipoTarefaRepository repository;
     @Autowired
-    private TipoHistoriaUsuarioApplication tarefaApplication;
+    private TipoHistoriaUsuarioApplication tipoTarefaApplication;
 
     public TipoTarefa create(TipoTarefaDTO tipoTarefaDTO){
         
-        TipoTarefa tipotarefa = new TipoTarefa(); 
+        TipoTarefa tipoTarefa = new TipoTarefa(); 
         try {
             
-            tipotarefa.setDescricao(tipoTarefaDTO.getDescricao());
-            tipotarefa.setHistoriaUser(tarefaApplication.getById(tipoTarefaDTO.getFk_histor_usuario()));
+            tipoTarefa.setDescricao(tipoTarefaDTO.getDescricao());
+            tipoTarefa.setTipoHistoriaUsuario(tipoTarefaApplication.getById(tipoTarefaDTO.getIdHistoriaUsuario()));
             /*if (tipoTarefaDTO.getDepenciasId() != null) {
                 List<TipoTarefa> dependencias = new ArrayList<>();
                 for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 
@@ -37,7 +37,7 @@ public class TipoTarefaApplication {
                 }
                 tipotarefa.setIdsTarefas(dependencias);
             }*/
-        return this.repository.save(tipotarefa);
+        return this.repository.save(tipoTarefa);
         } catch (NotFoundException e) {
             e.getMessage();
         }
@@ -55,7 +55,7 @@ public class TipoTarefaApplication {
             tipotarefa = opitional.get();
             return tipotarefa;
         }
-        else throw new NotFoundException("Tipo tarefa não achado");
+        else throw new NotFoundException("Tipo tarefa não encontrado.");
     }
     
     public List<TipoTarefa> getAll(){
@@ -67,7 +67,7 @@ public class TipoTarefaApplication {
         try {
             tipoTarefa = this.getById(id);
             tipoTarefa.setDescricao(tipoTarefaDTO.getDescricao());
-            tipoTarefa.setHistoriaUser(tarefaApplication.getById(tipoTarefaDTO.getFk_histor_usuario()));
+            tipoTarefa.setTipoHistoriaUsuario(tipoTarefaApplication.getById(tipoTarefaDTO.getIdHistoriaUsuario()));
             /*if (tipoTarefaDTO.getDepenciasId() != null) {
                 List<TipoTarefa> dependencias = new ArrayList<>();
                 for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 
@@ -80,7 +80,7 @@ public class TipoTarefaApplication {
                 tipoTarefa.setIdsTarefas(dependencias);
             }*/
             this.repository.save(tipoTarefa);
-           
+
         } catch (NotFoundException e) {
             e.getMessage();
         }
