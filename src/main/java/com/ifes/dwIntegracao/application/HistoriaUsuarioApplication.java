@@ -3,6 +3,8 @@ package com.ifes.dwIntegracao.application;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,7 @@ public class HistoriaUsuarioApplication {
     private EpicoApplication epicoApplication;
     @Autowired
     private TipoHistoriaUsuarioApplication tipoHApplication;
+
 
 
     public List<HistoriaUsuario> gera(int id) {
@@ -53,6 +56,17 @@ public class HistoriaUsuarioApplication {
             throw new RuntimeException("Erro ao gerar História de Usuário.", e);
         }
     }
+
+    public HistoriaUsuario retrieve(int id) throws NotFoundException
+    {
+        Optional<HistoriaUsuario> entity;
+
+        entity = repository.findById(id);
+
+        if (entity.isPresent()) return entity.get();
+        else throw new NotFoundException("Épico não encontrado");
+    }
+
     public String geraTitulo(String texto, String tipoHU){
         String[] palavras = texto.split(" ");
         String texto2 = String.join(" ", Arrays.copyOf(palavras, Math.min(4, palavras.length))) + " " + tipoHU + " " + palavras[palavras.length-1];
@@ -89,12 +103,10 @@ public class HistoriaUsuarioApplication {
             hUser.setEpico(dto.getEpico());
             this.repository.save(hUser);
             
-            
         } catch (NotFoundException e) {
             e.getMessage();
         
         } 
-
     }
     public void delete(int id){
         repository.deleteById(id);
