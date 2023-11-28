@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.ifes.dwIntegracao.dto.TipoTarefaDTO;
 import com.ifes.dwIntegracao.exception.NotFoundException;
@@ -13,11 +14,16 @@ import com.ifes.dwIntegracao.model.TipoTarefa;
 import com.ifes.dwIntegracao.repository.TipoTarefaRepository;
 
 @Component
+@Service
 public class TipoTarefaApplication {
     @Autowired
     private TipoTarefaRepository repository;
-    @Autowired
-    private TipoHistoriaUsuarioApplication tipoTarefaApplication;
+    //@Autowired
+    private TipoHistoriaUsuarioApplication tipoHUAplication;
+
+    //public TipoTarefaApplication(TipoHistoriaUsuario tipo){
+    //    this.tipoTarefaApplication = tipoTarefaApplication;
+    //}// terimar de construir o constructor
 
     public TipoTarefa create(TipoTarefaDTO tipoTarefaDTO){
         
@@ -25,7 +31,7 @@ public class TipoTarefaApplication {
         try {
             
             tipoTarefa.setDescricao(tipoTarefaDTO.getDescricao());
-            tipoTarefa.setTipoHistoriaUsuario(tipoTarefaApplication.getById(tipoTarefaDTO.getIdHistoriaUsuario()));
+            tipoTarefa.setTipoHistoriaUsuario(tipoHUAplication.retrieve(tipoTarefaDTO.getIdHistoriaUsuario()));
             /*if (tipoTarefaDTO.getDepenciasId() != null) {
                 List<TipoTarefa> dependencias = new ArrayList<>();
                 for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 
@@ -37,7 +43,7 @@ public class TipoTarefaApplication {
                 }
                 tipotarefa.setIdsTarefas(dependencias);
             }*/
-        return this.repository.save(tipoTarefa);
+        return repository.save(tipoTarefa);
         } catch (NotFoundException e) {
             e.getMessage();
         }
@@ -65,9 +71,9 @@ public class TipoTarefaApplication {
     public void update(int id,TipoTarefaDTO tipoTarefaDTO){
         TipoTarefa tipoTarefa;
         try {
-            tipoTarefa = this.getById(id);
+            tipoTarefa = getById(id);//this.getById(id);
             tipoTarefa.setDescricao(tipoTarefaDTO.getDescricao());
-            tipoTarefa.setTipoHistoriaUsuario(tipoTarefaApplication.getById(tipoTarefaDTO.getIdHistoriaUsuario()));
+            //tipoTarefa.setTipoHistoriaUsuario(tipoHUAplication.getById(tipoTarefaDTO.getIdHistoriaUsuario()));
             /*if (tipoTarefaDTO.getDepenciasId() != null) {
                 List<TipoTarefa> dependencias = new ArrayList<>();
                 for (Integer dependenciaId : tipoTarefaDTO.getDepenciasId()) { 
