@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ifes.dwIntegracao.dto.TipoHistoriaUsuarioDTO;
 import com.ifes.dwIntegracao.exception.NotFoundException;
+import com.ifes.dwIntegracao.model.TipoEpico;
 import com.ifes.dwIntegracao.model.TipoHistoriaUsuario;
 import com.ifes.dwIntegracao.repository.TipoHistoriaUsuarioRepository;
 
@@ -53,6 +54,20 @@ public class TipoHistoriaUsuarioApplication {
 
     }
 
+    public TipoHistoriaUsuario retrieve(int id) throws NotFoundException
+    {
+        TipoHistoriaUsuario tipoHistoriaUsuario;
+        Optional<TipoHistoriaUsuario> entity;
+
+        entity = tipoHURepository.findById(id);
+
+        if (entity.isPresent()) tipoHistoriaUsuario = entity.get();
+        else throw new NotFoundException("Tipo historia usuario não encontrado.");
+
+        return tipoHistoriaUsuario;
+    }// terminar o retrieve para colocar ele dentro de tipoTarefa apllication, dentro do metodo create
+
+    
     public TipoHistoriaUsuario getById(int id) throws NotFoundException{
         TipoHistoriaUsuario tipoHU;
         Optional<TipoHistoriaUsuario> opTipoHU;
