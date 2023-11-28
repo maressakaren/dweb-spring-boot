@@ -17,7 +17,7 @@ import com.ifes.dwIntegracao.dto.TipoTarefaDTO;
 import com.ifes.dwIntegracao.exception.NotFoundException;
 import com.ifes.dwIntegracao.model.TipoTarefa;
 
-@RequestMapping("cadastrar")
+@RequestMapping("cadastrar")// antes era cadastrar
 @RestController
 public class TipoTarefaController {
     @Autowired

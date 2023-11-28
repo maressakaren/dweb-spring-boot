@@ -19,7 +19,7 @@ import com.ifes.dwIntegracao.exception.NotFoundException;
 import com.ifes.dwIntegracao.model.Tarefa;
 
 @RestController
-@RequestMapping("/TarefaBD")
+@RequestMapping("TarefaBD")//TarefaBD
 
 public class TarefaController {
 
